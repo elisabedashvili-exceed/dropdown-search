@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react';
 import TextField from '@material-ui/core/TextField';
-import './App.css'; 
+import './App.css';
 
 let bigArray = [];
 for (let j = 1; j <= 10000; j++) {
@@ -66,6 +66,8 @@ class App extends Component {
 					);
 				}
 			);
+		} else {
+			this.setState(initialState);
 		}
 	};
 
@@ -105,19 +107,17 @@ class App extends Component {
 
 	render() {
 		let { inputValue, countedArray } = this.state;
+		// console.log(this.state)
+		
 		return (
 			<React.Fragment>
 				<TextField
 					inputRef={inputField}
 					className="regInputField"
+					id="inputBar"
 					size="small"
 					variant="outlined"
-					onChange={(e) => {
-						this.handleChange(e);
-						if (!e.target.value.length) {
-							this.setState(initialState);
-						}
-					}}
+					onChange={this.handleChange}
 					onClick={() => {
 						if (
 							!inputValue &&
@@ -128,9 +128,9 @@ class App extends Component {
 							this.load100Items();
 						}
 					}}
-					onFocus={(e) => {
-						this.handleChange(e);
-					}}
+					onFocus={
+						this.handleChange
+					}
 					onBlur={() => {
 						setTimeout(() => {
 							this.setState(initialState);

@@ -51,7 +51,7 @@ class App extends Component {
 	};
 
 	handleFocus = (e) => {
-		let { inputValue, amount, array, countedArray, visible } = this.state;
+		let { inputValue, amount, array } = this.state;
 		this.handleChange(e);
 		if (!inputValue && document.activeElement === inputField.current) {
 			this.setState({ countedArray: array.slice(0, amount), visible: true });
